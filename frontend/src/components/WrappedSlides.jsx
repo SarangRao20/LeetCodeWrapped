@@ -326,7 +326,7 @@ const WrappedSlides = ({ data }) => {
                         <div className="absolute bottom-8 left-0 w-full flex items-center justify-center gap-4 text-white/20 text-xs tracking-widest uppercase">
                             <span>Made with <span className="text-red-500">❤️</span> by Sarang</span>
                             <span className="w-1 h-1 bg-white/20 rounded-full"></span>
-                            <a href="https://www.linkedin.com/in/sarangrao" target="_blank" rel="noopener noreferrer" className="hover:text-accent-cyan transition-colors">
+                            <a href="https://www.linkedin.com/in/sarang-rao-262bbb324/" target="_blank" rel="noopener noreferrer" className="hover:text-accent-cyan transition-colors">
                                 LinkedIn
                             </a>
                         </div>
