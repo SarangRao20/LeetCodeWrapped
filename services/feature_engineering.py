@@ -136,42 +136,31 @@ def generate_wrapped(username: str, stats: dict):
     }
 
 def compute_user_stats(calendar: dict, raw_data: dict) -> dict:
+    # Logic to get total solves (All time)
+    total_solves = 0
+    submit_stats = raw_data.get("submitStats")
+    if submit_stats and "acSubmissionNum" in submit_stats:
+        # Find the entry where difficulty is "All"
+        for item in submit_stats["acSubmissionNum"]:
+            if item["difficulty"] == "All":
+                total_solves = item["count"]
+                break
+    else:
+        # Fallback to sum of calendar
+        total_solves = sum(calendar.values())
+
+    total_attempts = sum(calendar.values())
+    accuracy = (total_solves / total_attempts * 100) if total_attempts > 0 else 0
+
     stats = {
         "longest_streak": longest_streak(calendar),
         "burst_days": burst_days(calendar),
         "average_solves_per_day": avg_solves(calendar),
         "solve_variance": solve_variance(calendar),
-    }
-
-    stats["solver_persona"] = classify_solver(stats)
-    stats["peak_day"] = peak_day(calendar)
-    stats["peak_month"] = peak_month(calendar)
-    stats["weekday_vs_weekend"] = weekday_vs_weekend(calendar)
-    
-    # New Stats
-def peak_month(calendar: dict):
-    monthly = defaultdict(int)
-    for date, count in calendar.items():
-        # key = f"{date.year}-{date.month:02d}"
-        # Store as object to sort, but return formatted
-        key = date.replace(day=1) 
-        monthly[key] += count
-    
-    if not monthly:
-        return ("N/A", 0)
-
-    best_month_date, count = max(monthly.items(), key=lambda x: x[1])
-    return (best_month_date.strftime("%B %Y"), count)
-
-# ... (rest of file)
-
-def compute_user_stats(calendar: dict, raw_data: dict) -> dict:
-    stats = {
-        "longest_streak": longest_streak(calendar),
-        "burst_days": burst_days(calendar),
-        "average_solves_per_day": avg_solves(calendar),
-        "solve_variance": solve_variance(calendar),
-        "total_solves": sum(calendar.values()),
+        "total_solves": total_solves,
+        "total_attempts": total_attempts,
+        "accuracy": round(accuracy, 1),
+        "active_days": len(calendar)
     }
 
     stats["solver_persona"] = classify_solver(stats)

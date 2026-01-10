@@ -27,7 +27,7 @@ const LandingPage = ({ onGenerate }) => {
             >
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 glass mb-6">
                     <Terminal size={16} className="text-accent-cyan" />
-                    <span className="text-xs font-medium tracking-widest uppercase text-white/60">2024 Recap Edition</span>
+                    <span className="text-xs font-medium tracking-widest uppercase text-white/60">2025 Recap Edition</span>
                 </div>
 
                 <h1 className="text-6xl md:text-8xl font-black mb-6 tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40 leading-none">
@@ -68,6 +68,14 @@ const LandingPage = ({ onGenerate }) => {
                     <div className="text-sm font-bold tracking-widest uppercase italic">Flex</div>
                 </div>
             </motion.div>
+
+            <div className="absolute bottom-6 left-0 w-full flex items-center justify-center gap-4 text-white/20 text-xs tracking-widest uppercase z-20">
+                <span>Made with <span className="text-red-500">❤️</span> by Sarang</span>
+                <span className="w-1 h-1 bg-white/20 rounded-full"></span>
+                <a href="https://www.linkedin.com/in/sarang-rao-262bbb324/" target="_blank" rel="noopener noreferrer" className="hover:text-accent-cyan transition-colors flex items-center gap-1">
+                    LinkedIn
+                </a>
+            </div>
         </div>
     );
 };

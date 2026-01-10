@@ -51,8 +51,8 @@ const WrappedSlides = ({ data }) => {
         if (navigator.share) {
             try {
                 await navigator.share({
-                    title: `LeetCode Wrapped 2024 - ${data.user}`,
-                    text: `I had a ${data.stats.longest_streak} day streak on LeetCode! Check out my 2024 Wrapped.`,
+                    title: `LeetCode Wrapped 2025 - ${data.user}`,
+                    text: `I had a ${data.stats.longest_streak} day streak on LeetCode! Check out my 2025 Wrapped.`,
                     url: window.location.href,
                 });
             } catch (error) {
@@ -134,7 +134,7 @@ const WrappedSlides = ({ data }) => {
                             <Trophy className="text-accent-cyan" size={32} />
                         </motion.div>
                         <motion.p className="text-white/60 tracking-[0.3em] uppercase text-[10px] md:text-sm mb-4 font-bold">
-                            Your 2024 Identity
+                            Your 2025 Identity
                         </motion.p>
                         <motion.h2 className="text-5xl md:text-8xl lg:text-9xl font-black italic tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-accent-cyan via-white to-accent-purple leading-tight px-2">
                             {data.persona}
@@ -300,20 +300,36 @@ const WrappedSlides = ({ data }) => {
                         <Award className="mx-auto text-accent-pink mb-6 animate-glow rounded-full p-2" size={64} />
                         <h2 className="text-4xl md:text-5xl font-black mb-8">What a Year, <span className="text-accent-cyan">{data.user}</span>.</h2>
 
-                        <div className="grid grid-cols-2 gap-4 mb-12">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
                             <div className="glass p-4 rounded-2xl border-t-2 border-accent-cyan/30">
                                 <div className="text-[10px] text-white/40 uppercase font-bold tracking-widest mb-1">Total Solves</div>
                                 <div className="text-2xl font-black text-accent-cyan">{data.stats.total_solves}</div>
                             </div>
                             <div className="glass p-4 rounded-2xl border-t-2 border-accent-purple/30">
-                                <div className="text-[10px] text-white/40 uppercase font-bold tracking-widest mb-1">Consistency</div>
-                                <div className="text-2xl font-black text-accent-purple">{(data.stats.longest_streak / 365 * 100).toFixed(1)}%</div>
+                                <div className="text-[10px] text-white/40 uppercase font-bold tracking-widest mb-1">Pass Rate</div>
+                                <div className="text-2xl font-black text-accent-purple">{data.stats.accuracy}%</div>
+                            </div>
+                            <div className="glass p-4 rounded-2xl border-t-2 border-pink-500/30">
+                                <div className="text-[10px] text-white/40 uppercase font-bold tracking-widest mb-1">Attempts</div>
+                                <div className="text-2xl font-black text-pink-500">{data.stats.total_attempts}</div>
+                            </div>
+                            <div className="glass p-4 rounded-2xl border-t-2 border-yellow-500/30">
+                                <div className="text-[10px] text-white/40 uppercase font-bold tracking-widest mb-1">Active Days</div>
+                                <div className="text-2xl font-black text-yellow-500">{data.stats.active_days}</div>
                             </div>
                         </div>
 
-                        <p className="mb-12 text-white/40 text-sm italic">
-                            Share your journey to unlock your 2025 badge.
+                        <p className="mb-8 text-white/40 text-sm italic">
+                            Share your journey to unlock your <span className="text-white font-bold">2025</span> badge.
                         </p>
+
+                        <div className="absolute bottom-8 left-0 w-full flex items-center justify-center gap-4 text-white/20 text-xs tracking-widest uppercase">
+                            <span>Made with <span className="text-red-500">❤️</span> by Sarang</span>
+                            <span className="w-1 h-1 bg-white/20 rounded-full"></span>
+                            <a href="https://www.linkedin.com/in/sarangrao" target="_blank" rel="noopener noreferrer" className="hover:text-accent-cyan transition-colors">
+                                LinkedIn
+                            </a>
+                        </div>
                     </div>
 
                     <div className="flex flex-col md:flex-row gap-4 justify-center mt-[-40px]">
@@ -346,7 +362,7 @@ const WrappedSlides = ({ data }) => {
                     </motion.button>
                 </Slide>
             </div>
-        </div>
+        </div >
     );
 };
 

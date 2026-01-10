@@ -96,6 +96,7 @@ async def get_user_data(username: str):
     contest_data = await run_query(CONTEST_QUERY, {"username": username})
     tag_data = await run_query(TAG_QUERY, {"username": username})
     language_data = await run_query(LANGUAGE_QUERY, {"username": username})
+    profile_data = await run_query(USER_PROFILE_QUERY, {"username": username})
 
     user = calendar_data.get("data", {}).get("matchedUser")
     if not user or not user.get("submissionCalendar"):
@@ -105,5 +106,6 @@ async def get_user_data(username: str):
         "submissionCalendar": user["submissionCalendar"],
         "contestRanking": contest_data.get("data", {}).get("userContestRanking"),
         "tagProblemCounts": tag_data.get("data", {}).get("matchedUser", {}).get("tagProblemCounts"),
-        "languageProblemCount": language_data.get("data", {}).get("matchedUser", {}).get("languageProblemCount")
+        "languageProblemCount": language_data.get("data", {}).get("matchedUser", {}).get("languageProblemCount"),
+        "submitStats": profile_data.get("data", {}).get("matchedUser", {}).get("submitStats")
     }
