@@ -7,7 +7,22 @@ const ContestCard = ({ stats }) => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
 
-    if (!stats || stats.attendedContestsCount === 0) return null;
+    if (!stats || stats.attendedContestsCount === 0) {
+        return (
+            <Spotlight className="h-full">
+                <div ref={ref} className="h-full glass p-8 rounded-3xl border border-white/10 relative overflow-hidden flex flex-col items-center justify-center text-center">
+                    <Trophy className="text-white/20 mb-6" size={80} />
+                    <h3 className="text-3xl font-bold mb-2">Future Champion</h3>
+                    <p className="text-white/50 max-w-sm text-sm md:text-base">
+                        The arena awaits. Join a contest in 2025 to earn your rank and prove your mettle.
+                    </p>
+                    <div className="mt-8 px-6 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-white/40 uppercase tracking-widest">
+                        Unranked
+                    </div>
+                </div>
+            </Spotlight>
+        );
+    }
 
     return (
         <Spotlight className="h-full">

@@ -302,8 +302,8 @@ const WrappedSlides = ({ data }) => {
 
                         <div className="grid grid-cols-2 gap-4 mb-12">
                             <div className="glass p-4 rounded-2xl border-t-2 border-accent-cyan/30">
-                                <div className="text-[10px] text-white/40 uppercase font-bold tracking-widest mb-1">Total Impact</div>
-                                <div className="text-2xl font-black text-accent-cyan">{data.stats.peak_month[1] + 100}+</div>
+                                <div className="text-[10px] text-white/40 uppercase font-bold tracking-widest mb-1">Total Solves</div>
+                                <div className="text-2xl font-black text-accent-cyan">{data.stats.total_solves}</div>
                             </div>
                             <div className="glass p-4 rounded-2xl border-t-2 border-accent-purple/30">
                                 <div className="text-[10px] text-white/40 uppercase font-bold tracking-widest mb-1">Consistency</div>

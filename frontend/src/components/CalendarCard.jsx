@@ -21,12 +21,12 @@ const CalendarCard = ({ peakMonth }) => {
                 <Calendar className="text-accent-cyan mb-6" size={48} />
 
                 <div className="text-center mb-8">
-                    <h3 className="text-6xl md:text-8xl font-black text-white">{peakMonth[1]}</h3>
-                    <p className="text-xl font-bold uppercase tracking-[0.3em] text-accent-cyan mt-2">Solves in {peakMonth[0]}</p>
+                    <h3 className="text-4xl md:text-8xl font-black text-white">{peakMonth[1]}</h3>
+                    <p className="text-sm md:text-xl font-bold uppercase tracking-[0.3em] text-accent-cyan mt-2">{peakMonth[0]}</p>
                 </div>
 
                 {/* Visual Calendar Grid */}
-                <div className="grid grid-cols-7 gap-2 w-full max-w-sm opacity-60">
+                <div className="grid grid-cols-7 gap-1 md:gap-2 w-full max-w-[280px] md:max-w-sm opacity-60">
                     {days.map((d, i) => (
                         <motion.div
                             key={i}
@@ -34,7 +34,7 @@ const CalendarCard = ({ peakMonth }) => {
                             animate={isInView ? { scale: 1 } : {}}
                             transition={{ delay: i * 0.02, type: "spring" }}
                             className={`aspect-square rounded-md ${d.intensity > 0.7 ? 'bg-accent-cyan shadow-[0_0_10px_rgba(0,247,255,0.8)]' :
-                                    d.intensity > 0.4 ? 'bg-accent-cyan/40' : 'bg-white/5'
+                                d.intensity > 0.4 ? 'bg-accent-cyan/40' : 'bg-white/5'
                                 }`}
                         />
                     ))}
