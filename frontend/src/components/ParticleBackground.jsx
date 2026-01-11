@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react';
+import { useTheme } from '../contexts/ThemeContext';
 
 const ParticleBackground = () => {
     const canvasRef = useRef(null);
+    const { theme } = useTheme();
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -10,6 +12,11 @@ const ParticleBackground = () => {
         const ctx = canvas.getContext('2d');
         let animationFrameId;
         let particles = [];
+        
+        // Theme-aware particle color
+        const particleColor = theme === 'dark' 
+            ? 'rgba(255, 255, 255, OPACITY)' 
+            : 'rgba(15, 23, 42, OPACITY)';
 
         const resizeCanvas = () => {
             canvas.width = window.innerWidth;
@@ -37,7 +44,7 @@ const ParticleBackground = () => {
             particles.forEach(particle => {
                 ctx.beginPath();
                 ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, ${particle.opacity})`;
+                ctx.fillStyle = particleColor.replace('OPACITY', particle.opacity);
                 ctx.fill();
 
                 // Update position
@@ -67,7 +74,7 @@ const ParticleBackground = () => {
             window.removeEventListener('resize', resizeCanvas);
             cancelAnimationFrame(animationFrameId);
         };
-    }, []);
+    }, [theme]);
 
     return (
         <canvas

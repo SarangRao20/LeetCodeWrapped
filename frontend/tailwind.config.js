@@ -4,14 +4,18 @@ export default {
         "./index.html",
         "./src/**/*.{js,ts,jsx,tsx}",
     ],
+    darkMode: ['selector', '[data-theme="dark"]'],
     theme: {
         extend: {
             colors: {
-                background: "#030303",
+                background: "var(--background)",
+                'text-primary': "var(--color-text-primary)",
+                'text-secondary': "var(--color-text-secondary)",
+                'text-muted': "var(--color-text-muted)",
                 accent: {
-                    cyan: "#00f7ff",
-                    purple: "#bc13fe",
-                    pink: "#ff00e0",
+                    cyan: "var(--accent-cyan)",
+                    purple: "var(--accent-purple)",
+                    pink: "var(--accent-pink)",
                     blue: "#0047ff"
                 },
             },

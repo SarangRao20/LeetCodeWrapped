@@ -1,12 +1,17 @@
 import { motion } from 'framer-motion';
 
-const Slide = ({ children, className = "", bgGradient = "from-background to-[#0a0a0a]" }) => {
+const Slide = ({ children, className = "", bgGradient = "" }) => {
     return (
-        <section className={`snap-slide relative flex items-center justify-center p-6 overflow-hidden bg-gradient-to-b ${bgGradient} ${className}`}>
+        <section 
+            className={`snap-slide relative flex items-center justify-center p-6 overflow-hidden ${className}`}
+            style={{
+                background: bgGradient || `linear-gradient(to bottom, var(--background), var(--background-secondary))`
+            }}
+        >
             {/* Background decoration */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none">
-                <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-accent-cyan/10 blur-[120px] rounded-full" />
-                <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-accent-purple/10 blur-[120px] rounded-full" />
+                <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] blur-[120px] rounded-full" style={{ backgroundColor: 'var(--glow-cyan)' }} />
+                <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] blur-[120px] rounded-full" style={{ backgroundColor: 'var(--glow-purple)' }} />
             </div>
 
             <motion.div

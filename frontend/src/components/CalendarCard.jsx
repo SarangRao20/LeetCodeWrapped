@@ -15,14 +15,14 @@ const CalendarCard = ({ peakMonth }) => {
 
     return (
         <Spotlight className="h-full">
-            <div ref={ref} className="h-full glass p-8 rounded-3xl border border-white/10 flex flex-col items-center justify-center relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent-cyan to-transparent opacity-50" />
+            <div ref={ref} className="h-full glass p-8 rounded-3xl border flex flex-col items-center justify-center relative overflow-hidden" style={{ borderColor: 'var(--glass-border)' }}>
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent opacity-50" style={{ backgroundColor: 'var(--accent-cyan)' }} />
 
-                <Calendar className="text-accent-cyan mb-6" size={48} />
+                <Calendar className="mb-6" size={48} style={{ color: 'var(--accent-cyan)' }} />
 
                 <div className="text-center mb-8">
-                    <h3 className="text-4xl md:text-8xl font-black text-white">{peakMonth[1]}</h3>
-                    <p className="text-sm md:text-xl font-bold uppercase tracking-[0.3em] text-accent-cyan mt-2">{peakMonth[0]}</p>
+                    <h3 className="text-4xl md:text-8xl font-black" style={{ color: 'var(--color-text-primary)' }}>{peakMonth[1]}</h3>
+                    <p className="text-sm md:text-xl font-bold uppercase tracking-[0.3em] mt-2" style={{ color: 'var(--accent-cyan)' }}>{peakMonth[0]}</p>
                 </div>
 
                 {/* Visual Calendar Grid */}
@@ -33,14 +33,18 @@ const CalendarCard = ({ peakMonth }) => {
                             initial={{ scale: 0 }}
                             animate={isInView ? { scale: 1 } : {}}
                             transition={{ delay: i * 0.02, type: "spring" }}
-                            className={`aspect-square rounded-md ${d.intensity > 0.7 ? 'bg-accent-cyan shadow-[0_0_10px_rgba(0,247,255,0.8)]' :
-                                d.intensity > 0.4 ? 'bg-accent-cyan/40' : 'bg-white/5'
-                                }`}
+                            style={{
+                                backgroundColor: d.intensity > 0.7 ? 'var(--accent-cyan)' : 
+                                    d.intensity > 0.4 ? 'var(--accent-cyan)' : 'var(--glass-bg)',
+                                opacity: d.intensity > 0.7 ? 1 : d.intensity > 0.4 ? 0.4 : 0.2,
+                                boxShadow: d.intensity > 0.7 ? '0 0 10px var(--glow-cyan)' : 'none'
+                            }}
+                            className="aspect-square rounded-md"
                         />
                     ))}
                 </div>
 
-                <div className="mt-8 text-xs text-white/30 tracking-widest uppercase">
+                <div className="mt-8 text-xs tracking-widest uppercase" style={{ color: 'var(--color-text-muted)' }}>
                     Your golden era
                 </div>
             </div>

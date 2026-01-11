@@ -99,7 +99,8 @@ const WrappedSlides = ({ data }) => {
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.8 }}
                             onClick={() => scrollToSlide(currentSlide - 1)}
-                            className="p-4 rounded-full glass hover:bg-white/10 text-white/60 transition-colors"
+                            className="p-4 rounded-full glass transition-colors"
+                            style={{ color: 'var(--color-text-secondary)' }}
                         >
                             <ChevronUp size={24} />
                         </motion.button>
@@ -113,7 +114,12 @@ const WrappedSlides = ({ data }) => {
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.8 }}
                             onClick={() => scrollToSlide(currentSlide + 1)}
-                            className="p-4 rounded-full bg-accent-cyan text-black hover:scale-110 transition-transform shadow-[0_0_20px_rgba(0,247,255,0.4)]"
+                            className="p-4 rounded-full transition-transform"
+                            style={{
+                                backgroundColor: 'var(--accent-cyan)',
+                                color: '#ffffff',
+                                boxShadow: '0 0 20px var(--glow-cyan)'
+                            }}
                         >
                             <ChevronDown size={24} />
                         </motion.button>
@@ -123,7 +129,7 @@ const WrappedSlides = ({ data }) => {
 
             <div ref={containerRef} className="snap-container h-full w-full">
                 {/* Slide 1: Persona Reveal */}
-                <Slide bgGradient="from-[#030303] via-[#050505] to-[#0a0a0a]">
+                <Slide>
                     <div className="text-center px-4">
                         <motion.div
                             initial={{ scale: 0, rotate: -180 }}
@@ -133,21 +139,23 @@ const WrappedSlides = ({ data }) => {
                         >
                             <Trophy className="text-accent-cyan" size={32} />
                         </motion.div>
-                        <motion.p className="text-white/60 tracking-[0.3em] uppercase text-[10px] md:text-sm mb-4 font-bold">
+                        <motion.p className="tracking-[0.3em] uppercase text-[10px] md:text-sm mb-4 font-bold" style={{ color: 'var(--color-text-secondary)' }}>
                             Your 2025 Identity
                         </motion.p>
-                        <motion.h2 className="text-5xl md:text-8xl lg:text-9xl font-black italic tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-accent-cyan via-white to-accent-purple leading-tight px-2">
+                        <motion.h2 className="text-5xl md:text-8xl lg:text-9xl font-black italic tracking-tighter leading-tight px-2" style={{ color: 'var(--color-text-primary)' }}>
                             {data.persona}
                         </motion.h2>
                     </div>
                 </Slide>
 
                 {/* Slide 2: Longest Streak */}
-                <Slide bgGradient="from-[#0a0a0a] via-[#020202] to-[#080808]">
+                <Slide>
                     <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center w-full px-4">
                         <div className="text-center lg:text-left">
-                            <h3 className="text-3xl md:text-5xl font-black mb-4 leading-tight">The Power of<br /><span className="text-accent-cyan">Consistency</span></h3>
-                            <p className="text-white/40 text-sm md:text-lg mb-8 uppercase tracking-widest font-bold">Unstoppable Momentum</p>
+                            <h3 className="text-3xl md:text-5xl font-black mb-4 leading-tight" style={{ color: 'var(--color-text-primary)' }}>
+                                The Power of<br /><span style={{ color: 'var(--accent-cyan)' }}>Consistency</span>
+                            </h3>
+                            <p className="text-sm md:text-lg mb-8 uppercase tracking-widest font-bold" style={{ color: 'var(--color-text-muted)' }}>Unstoppable Momentum</p>
                             <div className="space-y-4 max-w-md mx-auto lg:mx-0">
                                 {data.highlights.map((highlight, i) => (
                                     <motion.div
@@ -155,80 +163,85 @@ const WrappedSlides = ({ data }) => {
                                         whileInView={{ opacity: 1, x: 0 }}
                                         transition={{ delay: i * 0.2 }}
                                         key={i}
-                                        className="flex items-center gap-3 text-white/80 glass p-3 rounded-xl border-l-2 border-accent-cyan"
+                                        className="flex items-center gap-3 glass p-3 rounded-xl border-l-2"
+                                        style={{ color: 'var(--color-text-primary)', borderColor: 'var(--accent-cyan)' }}
                                     >
-                                        <Flame size={18} className="text-accent-cyan shrink-0" />
+                                        <Flame size={18} className="shrink-0" style={{ color: 'var(--accent-cyan)' }} />
                                         <span className="text-sm md:text-lg font-medium">{highlight}</span>
                                     </motion.div>
                                 ))}
                             </div>
                         </div>
-                        <AnimatedCard className="aspect-square flex flex-col items-center justify-center border-t-accent-cyan/30 border-t-4 max-w-sm mx-auto w-full">
-                            <span className="text-white/40 text-[10px] md:text-sm uppercase tracking-[0.2em] mb-4">Longest Streak</span>
-                            <div className="text-7xl md:text-8xl font-black text-accent-cyan">{data.stats.longest_streak}</div>
-                            <span className="text-white/60 text-lg md:text-xl font-medium mt-2">Days</span>
+                        <AnimatedCard className="aspect-square flex flex-col items-center justify-center border-t-4 max-w-sm mx-auto w-full" style={{ borderTopColor: 'var(--accent-cyan)' }}>
+                            <span className="text-[10px] md:text-sm uppercase tracking-[0.2em] mb-4" style={{ color: 'var(--color-text-muted)' }}>Longest Streak</span>
+                            <div className="text-7xl md:text-8xl font-black" style={{ color: 'var(--accent-cyan)' }}>{data.stats.longest_streak}</div>
+                            <span className="text-lg md:text-xl font-medium mt-2" style={{ color: 'var(--color-text-secondary)' }}>Days</span>
                         </AnimatedCard>
                     </div>
                 </Slide>
 
                 {/* Slide 3: Burst Behavior */}
-                <Slide bgGradient="from-[#080808] via-[#000000] to-[#0a0a0a]">
+                <Slide>
                     <div className="w-full px-4">
                         <div className="text-center mb-10 md:mb-16">
-                            <h3 className="text-4xl md:text-6xl font-black mb-4"><span className="text-accent-purple">Burst</span> Mode</h3>
-                            <p className="text-white/40 text-sm md:text-lg uppercase tracking-widest font-bold italic">Intensity defined your year</p>
+                            <h3 className="text-4xl md:text-6xl font-black mb-4" style={{ color: 'var(--color-text-primary)' }}>
+                                <span style={{ color: 'var(--accent-purple)' }}>Burst</span> Mode
+                            </h3>
+                            <p className="text-sm md:text-lg uppercase tracking-widest font-bold italic" style={{ color: 'var(--color-text-muted)' }}>Intensity defined your year</p>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                             <AnimatedCard delay={0.1} className="text-center py-6 md:py-8">
-                                <Zap className="mx-auto mb-4 text-accent-purple" size={28} />
-                                <div className="text-3xl md:text-4xl font-black mb-1">{data.stats.burst_days}</div>
-                                <div className="text-white/40 text-[10px] uppercase font-bold tracking-widest">Burst Days</div>
+                                <Zap className="mx-auto mb-4" size={28} style={{ color: 'var(--accent-purple)' }} />
+                                <div className="text-3xl md:text-4xl font-black mb-1" style={{ color: 'var(--color-text-primary)' }}>{data.stats.burst_days}</div>
+                                <div className="text-[10px] uppercase font-bold tracking-widest" style={{ color: 'var(--color-text-muted)' }}>Burst Days</div>
                             </AnimatedCard>
-                            <AnimatedCard delay={0.2} className="text-center py-6 md:py-8 border-t-accent-cyan/20 border-t-2">
-                                <Activity className="mx-auto mb-4 text-accent-cyan" size={28} />
-                                <div className="text-3xl md:text-4xl font-black mb-1">{data.stats.average_solves_per_day.toFixed(1)}</div>
-                                <div className="text-white/40 text-[10px] uppercase font-bold tracking-widest">Avg Solves / Day</div>
+                            <AnimatedCard delay={0.2} className="text-center py-6 md:py-8 border-t-2" style={{ borderTopColor: 'var(--accent-cyan)' }}>
+                                <Activity className="mx-auto mb-4" size={28} style={{ color: 'var(--accent-cyan)' }} />
+                                <div className="text-3xl md:text-4xl font-black mb-1" style={{ color: 'var(--color-text-primary)' }}>{data.stats.average_solves_per_day.toFixed(1)}</div>
+                                <div className="text-[10px] uppercase font-bold tracking-widest" style={{ color: 'var(--color-text-muted)' }}>Avg Solves / Day</div>
                             </AnimatedCard>
-                            <AnimatedCard delay={0.3} className="text-center py-6 md:py-8 border-t-accent-pink/20 border-t-2">
-                                <BarChart3 className="mx-auto mb-4 text-accent-pink" size={28} />
-                                <div className="text-3xl md:text-4xl font-black mb-1">{data.stats.solve_variance.toFixed(1)}</div>
-                                <div className="text-white/40 text-[10px] uppercase font-bold tracking-widest">Solve Variance</div>
+                            <AnimatedCard delay={0.3} className="text-center py-6 md:py-8 border-t-2" style={{ borderTopColor: 'var(--accent-pink)' }}>
+                                <BarChart3 className="mx-auto mb-4" size={28} style={{ color: 'var(--accent-pink)' }} />
+                                <div className="text-3xl md:text-4xl font-black mb-1" style={{ color: 'var(--color-text-primary)' }}>{data.stats.solve_variance.toFixed(1)}</div>
+                                <div className="text-[10px] uppercase font-bold tracking-widest" style={{ color: 'var(--color-text-muted)' }}>Solve Variance</div>
                             </AnimatedCard>
                         </div>
                     </div>
                 </Slide>
 
                 {/* Slide 4: Contest Glory (NEW) */}
-                <Slide bgGradient="from-[#0a0a0a] via-[#111] to-[#0a0a0a]">
+                <Slide>
                     <div className="w-full h-full flex flex-col justify-center px-4 max-h-[80vh]">
                         <ContestCard stats={data.stats.contest_stats} />
                     </div>
                 </Slide>
 
                 {/* Slide 5: Topic Mastery (NEW - merged with Language DNA) */}
-                <Slide bgGradient="from-[#050505] via-[#0a0a0a] to-[#000000]">
+                <Slide>
                     <div className="w-full h-full flex flex-col justify-center px-4 max-h-[80vh]">
                         <TopicCard topics={data.stats.topic_stats} languages={data.stats.language_stats} />
                     </div>
                 </Slide>
 
                 {/* Slide 6: Discipline Analysis */}
-                <Slide bgGradient="from-[#0a0a0a] via-[#111] to-[#0a0a0a]">
+                <Slide>
                     <div className="w-full px-4 text-center">
-                        <Target className="mx-auto text-accent-cyan mb-6" size={48} />
-                        <h3 className="text-4xl md:text-6xl font-black mb-8 italic">Your Solve <span className="text-accent-cyan">Rhythm</span></h3>
-                        <div className="max-w-xl mx-auto glass p-8 rounded-3xl border-t-4 border-accent-cyan">
+                        <Target className="mx-auto mb-6" size={48} style={{ color: 'var(--accent-cyan)' }} />
+                        <h3 className="text-4xl md:text-6xl font-black mb-8 italic" style={{ color: 'var(--color-text-primary)' }}>
+                            Your Solve <span style={{ color: 'var(--accent-cyan)' }}>Rhythm</span>
+                        </h3>
+                        <div className="max-w-xl mx-auto glass p-8 rounded-3xl border-t-4" style={{ borderTopColor: 'var(--accent-cyan)' }}>
                             <div className="flex justify-between items-center mb-6">
                                 <div className="text-left">
-                                    <div className="text-white/40 text-[10px] uppercase tracking-widest font-bold">Variability</div>
-                                    <div className="text-2xl font-bold">{data.stats.solve_variance > 5 ? 'Chaos Solver' : 'Rhythmic Solver'}</div>
+                                    <div className="text-[10px] uppercase tracking-widest font-bold" style={{ color: 'var(--color-text-muted)' }}>Variability</div>
+                                    <div className="text-2xl font-bold" style={{ color: 'var(--color-text-primary)' }}>{data.stats.solve_variance > 5 ? 'Chaos Solver' : 'Rhythmic Solver'}</div>
                                 </div>
                                 <div className="text-right">
-                                    <div className="text-white/40 text-[10px] uppercase tracking-widest font-bold">Velocity</div>
-                                    <div className="text-2xl font-bold">{data.stats.average_solves_per_day > 2 ? 'High' : 'Steady'}</div>
+                                    <div className="text-[10px] uppercase tracking-widest font-bold" style={{ color: 'var(--color-text-muted)' }}>Velocity</div>
+                                    <div className="text-2xl font-bold" style={{ color: 'var(--color-text-primary)' }}>{data.stats.average_solves_per_day > 2 ? 'High' : 'Steady'}</div>
                                 </div>
                             </div>
-                            <p className="text-white/60 text-lg md:text-xl font-light leading-relaxed">
+                            <p className="text-lg md:text-xl font-light leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
                                 {data.stats.solve_variance > 5
                                     ? "You're unpredictable. When you code, you're a force of nature—dropping solutions in clusters that defy the routine."
                                     : "You are a metronome. Precision and predictability are your weapons. You build progress brick by brick, day by day."}
@@ -238,22 +251,25 @@ const WrappedSlides = ({ data }) => {
                 </Slide>
 
                 {/* Slide 7: Peak Month (Updated with CalendarCard) */}
-                <Slide bgGradient="from-[#0a0a0a] via-[#040404] to-[#030303]">
+                <Slide>
                     <div className="flex flex-col lg:flex-row gap-8 md:gap-12 items-center w-full px-4 h-full">
                         <div className="w-full lg:w-1/2 h-[50vh] lg:h-auto">
                             <CalendarCard peakMonth={data.stats.peak_month} />
                         </div>
                         <div className="w-full lg:w-1/2 text-center lg:text-left">
-                            <h4 className="text-3xl md:text-5xl font-black mb-6 leading-tight">Your <span className="text-accent-cyan">Peak Zone</span></h4>
-                            <p className="text-white/40 text-lg mb-8 italic font-medium">
+                            <h4 className="text-3xl md:text-5xl font-black mb-6 leading-tight" style={{ color: 'var(--color-text-primary)' }}>
+                                Your <span style={{ color: 'var(--accent-cyan)' }}>Peak Zone</span>
+                            </h4>
+                            <p className="text-lg mb-8 italic font-medium" style={{ color: 'var(--color-text-muted)' }}>
                                 That month, you were untouchable. The problems didn't stand a chance.
                             </p>
-                            <div className="h-3 w-full bg-white/5 rounded-full overflow-hidden relative">
+                            <div className="h-3 w-full rounded-full overflow-hidden relative" style={{ backgroundColor: 'var(--glass-border)' }}>
                                 <motion.div
                                     initial={{ width: 0 }}
                                     whileInView={{ width: "100%" }}
                                     transition={{ duration: 2, ease: "circOut" }}
-                                    className="h-full bg-gradient-to-r from-accent-cyan/40 to-accent-cyan shadow-[0_0_20px_rgba(0,247,255,0.5)]"
+                                    className="h-full shadow-[0_0_20px_rgba(0,247,255,0.5)]"
+                                    style={{ background: 'linear-gradient(to right, var(--accent-cyan), var(--accent-cyan))' }}
                                 />
                             </div>
                         </div>
@@ -261,32 +277,40 @@ const WrappedSlides = ({ data }) => {
                 </Slide>
 
                 {/* Slide 8: Coding Rhythm */}
-                <Slide bgGradient="from-[#030303] to-black">
+                <Slide>
                     <div className="text-center w-full px-4">
-                        <h3 className="text-4xl md:text-6xl font-black mb-12 md:mb-16 leading-tight">The <span className="text-accent-pink">Heartbeat</span> of your Code</h3>
+                        <h3 className="text-4xl md:text-6xl font-black mb-12 md:mb-16 leading-tight" style={{ color: 'var(--color-text-primary)' }}>The <span style={{ color: 'var(--accent-pink)' }}>Heartbeat</span> of your Code</h3>
                         <div className="flex justify-center items-end gap-10 md:gap-32 h-64 mb-16 px-4">
                             <div className="flex flex-col items-center gap-6 w-full max-w-[100px] md:max-w-[120px]">
-                                <div className="text-white/40 text-[10px] md:text-sm font-bold uppercase tracking-widest">Weekday</div>
+                                <div className="text-[10px] md:text-sm font-bold uppercase tracking-widest" style={{ color: 'var(--color-text-muted)' }}>Weekday</div>
                                 <motion.div
                                     initial={{ height: 0 }}
                                     whileInView={{ height: `${(data.stats.weekday_vs_weekend.weekday / (data.stats.weekday_vs_weekend.weekday + data.stats.weekday_vs_weekend.weekend)) * 100}%` }}
                                     transition={{ duration: 1.5, ease: "backOut" }}
-                                    className="w-full bg-gradient-to-t from-accent-cyan to-accent-blue rounded-2xl shadow-[0_0_30px_rgba(0,71,255,0.3)] min-h-[40px]"
+                                    className="w-full rounded-2xl min-h-[40px]"
+                                    style={{ 
+                                        background: 'linear-gradient(to top, var(--accent-cyan), var(--accent-blue))',
+                                        boxShadow: '0 0 30px var(--glow-cyan)'
+                                    }}
                                 />
-                                <div className="text-2xl md:text-3xl font-black">{data.stats.weekday_vs_weekend.weekday}</div>
+                                <div className="text-2xl md:text-3xl font-black" style={{ color: 'var(--color-text-primary)' }}>{data.stats.weekday_vs_weekend.weekday}</div>
                             </div>
                             <div className="flex flex-col items-center gap-6 w-full max-w-[100px] md:max-w-[120px]">
-                                <div className="text-white/40 text-[10px] md:text-sm font-bold uppercase tracking-widest">Weekend</div>
+                                <div className="text-[10px] md:text-sm font-bold uppercase tracking-widest" style={{ color: 'var(--color-text-muted)' }}>Weekend</div>
                                 <motion.div
                                     initial={{ height: 0 }}
                                     whileInView={{ height: `${(data.stats.weekday_vs_weekend.weekend / (data.stats.weekday_vs_weekend.weekday + data.stats.weekday_vs_weekend.weekend)) * 100}%` }}
                                     transition={{ duration: 1.5, ease: "backOut", delay: 0.2 }}
-                                    className="w-full bg-gradient-to-t from-accent-purple to-accent-pink rounded-2xl shadow-[0_0_30px_rgba(255,0,224,0.3)] min-h-[40px]"
+                                    className="w-full rounded-2xl min-h-[40px]"
+                                    style={{ 
+                                        background: 'linear-gradient(to top, var(--accent-purple), var(--accent-pink))',
+                                        boxShadow: '0 0 30px var(--glow-purple)'
+                                    }}
                                 />
-                                <div className="text-2xl md:text-3xl font-black">{data.stats.weekday_vs_weekend.weekend}</div>
+                                <div className="text-2xl md:text-3xl font-black" style={{ color: 'var(--color-text-primary)' }}>{data.stats.weekday_vs_weekend.weekend}</div>
                             </div>
                         </div>
-                        <p className="text-white/50 text-base md:text-xl font-medium max-w-lg mx-auto italic">
+                        <p className="text-base md:text-xl font-medium max-w-lg mx-auto italic" style={{ color: 'var(--color-text-secondary)' }}>
                             {data.stats.weekday_vs_weekend.weekday > data.stats.weekday_vs_weekend.weekend
                                 ? "You're a professional. Coding is your mission from 9 to 5."
                                 : "You’re a weekend warrior. The peace of Saturday is your fuel."}
@@ -295,49 +319,47 @@ const WrappedSlides = ({ data }) => {
                 </Slide>
 
                 {/* Slide 9: Summary & Share */}
-                <Slide bgGradient="from-black to-[#050505]">
+                <Slide>
                     <div ref={summaryRef} className="w-full max-w-2xl mx-auto px-4 text-center py-12 rounded-3xl bg-transparent">
-                        <Award className="mx-auto text-accent-pink mb-6 animate-glow rounded-full p-2" size={64} />
-                        <h2 className="text-4xl md:text-5xl font-black mb-8">What a Year, <span className="text-accent-cyan">{data.user}</span>.</h2>
+                        <Award className="mx-auto animate-glow rounded-full p-2" size={64} style={{ color: 'var(--accent-pink)' }} />
+                        <h2 className="text-4xl md:text-5xl font-black mb-8" style={{ color: 'var(--color-text-primary)' }}>
+                            What a Year, <span style={{ color: 'var(--accent-cyan)' }}>{data.user}</span>.
+                        </h2>
 
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-                            <div className="glass p-4 rounded-2xl border-t-2 border-accent-cyan/30">
-                                <div className="text-[10px] text-white/40 uppercase font-bold tracking-widest mb-1">Total Solves</div>
-                                <div className="text-2xl font-black text-accent-cyan">{data.stats.total_solves}</div>
+                            <div className="glass p-4 rounded-2xl border-t-2" style={{ borderTopColor: 'var(--accent-cyan)' }}>
+                                <div className="text-[10px] uppercase font-bold tracking-widest mb-1" style={{ color: 'var(--color-text-muted)' }}>Total Solves</div>
+                                <div className="text-2xl font-black" style={{ color: 'var(--accent-cyan)' }}>{data.stats.total_solves}</div>
                             </div>
-                            <div className="glass p-4 rounded-2xl border-t-2 border-accent-purple/30">
-                                <div className="text-[10px] text-white/40 uppercase font-bold tracking-widest mb-1">Pass Rate</div>
-                                <div className="text-2xl font-black text-accent-purple">{data.stats.accuracy}%</div>
+                            <div className="glass p-4 rounded-2xl border-t-2" style={{ borderTopColor: 'var(--accent-purple)' }}>
+                                <div className="text-[10px] uppercase font-bold tracking-widest mb-1" style={{ color: 'var(--color-text-muted)' }}>Pass Rate</div>
+                                <div className="text-2xl font-black" style={{ color: 'var(--accent-purple)' }}>{data.stats.accuracy}%</div>
                             </div>
-                            <div className="glass p-4 rounded-2xl border-t-2 border-pink-500/30">
-                                <div className="text-[10px] text-white/40 uppercase font-bold tracking-widest mb-1">Attempts</div>
-                                <div className="text-2xl font-black text-pink-500">{data.stats.total_attempts}</div>
+                            <div className="glass p-4 rounded-2xl border-t-2" style={{ borderTopColor: 'var(--accent-pink)' }}>
+                                <div className="text-[10px] uppercase font-bold tracking-widest mb-1" style={{ color: 'var(--color-text-muted)' }}>Attempts</div>
+                                <div className="text-2xl font-black" style={{ color: 'var(--accent-pink)' }}>{data.stats.total_attempts}</div>
                             </div>
-                            <div className="glass p-4 rounded-2xl border-t-2 border-yellow-500/30">
-                                <div className="text-[10px] text-white/40 uppercase font-bold tracking-widest mb-1">Active Days</div>
+                            <div className="glass p-4 rounded-2xl border-t-2 border-yellow-500">
+                                <div className="text-[10px] uppercase font-bold tracking-widest mb-1" style={{ color: 'var(--color-text-muted)' }}>Active Days</div>
                                 <div className="text-2xl font-black text-yellow-500">{data.stats.active_days}</div>
                             </div>
                         </div>
 
-                        <p className="mb-8 text-white/40 text-sm italic">
-                            Share your journey to unlock your <span className="text-white font-bold">2025</span> badge.
+                        <p className="mb-8 text-sm italic" style={{ color: 'var(--color-text-muted)' }}>
+                            Share your journey to unlock your <span className="font-bold" style={{ color: 'var(--color-text-primary)' }}>2025</span> badge.
                         </p>
-
-                        <div className="absolute bottom-8 left-0 w-full flex items-center justify-center gap-4 text-white/20 text-xs tracking-widest uppercase">
-                            <span>Made with <span className="text-red-500">❤️</span> by Sarang</span>
-                            <span className="w-1 h-1 bg-white/20 rounded-full"></span>
-                            <a href="https://www.linkedin.com/in/sarang-rao-262bbb324/" target="_blank" rel="noopener noreferrer" className="hover:text-accent-cyan transition-colors">
-                                LinkedIn
-                            </a>
-                        </div>
                     </div>
 
-                    <div className="flex flex-col md:flex-row gap-4 justify-center mt-[-40px]">
+                    <div className="flex flex-col md:flex-row gap-4 justify-center mt-4">
                         <motion.button
                             onClick={handleShare}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="flex items-center justify-center gap-2 bg-white text-black px-10 py-4 rounded-full font-bold tracking-widest uppercase text-sm shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+                            className="flex items-center justify-center gap-2 px-10 py-4 rounded-full font-bold tracking-widest uppercase text-sm"
+                            style={{
+                                backgroundColor: 'var(--color-text-primary)',
+                                color: 'var(--background)'
+                            }}
                         >
                             <Share2 size={18} />
                             Share Analysis
@@ -346,7 +368,11 @@ const WrappedSlides = ({ data }) => {
                             onClick={downloadSummary}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="flex items-center justify-center gap-2 bg-accent-purple text-white px-10 py-4 rounded-full font-bold tracking-widest uppercase text-sm shadow-[0_0_20px_rgba(188,19,254,0.4)]"
+                            className="flex items-center justify-center gap-2 px-10 py-4 rounded-full font-bold tracking-widest uppercase text-sm shadow-[0_0_20px_rgba(188,19,254,0.4)]"
+                            style={{
+                                backgroundColor: 'var(--accent-purple)',
+                                color: 'white'
+                            }}
                         >
                             <Download size={18} />
                             Save Image
@@ -356,10 +382,47 @@ const WrappedSlides = ({ data }) => {
                     <motion.button
                         onClick={() => window.location.reload()}
                         whileHover={{ scale: 1.1 }}
-                        className="mt-12 flex items-center justify-center text-white/30 hover:text-white transition-colors"
+                        className="mt-8 flex items-center justify-center transition-colors"
+                        style={{ color: 'var(--color-text-muted)' }}
                     >
                         <RotateCcw size={24} />
                     </motion.button>
+
+                    {/* Footer with GitHub and LinkedIn */}
+                    <div className="mt-12 flex items-center justify-center">
+                        <div className="glass px-6 py-3 rounded-full flex items-center gap-6 border" style={{ borderColor: 'var(--glass-border)' }}>
+                            <span className="text-sm font-medium" style={{ color: 'var(--color-text-secondary)' }}>
+                                Made with <span className="text-red-500 animate-pulse">❤️</span> by Sarang
+                            </span>
+                            <div className="w-px h-4" style={{ backgroundColor: 'var(--glass-border)' }}></div>
+                            <div className="flex items-center gap-4">
+                                <a 
+                                    href="https://github.com/SarangRao" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    className="flex items-center gap-2 text-sm font-medium transition-all hover:scale-110"
+                                    style={{ color: 'var(--color-text-secondary)' }}
+                                >
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                    </svg>
+                                    GitHub
+                                </a>
+                                <a 
+                                    href="https://www.linkedin.com/in/sarang-rao-262bbb324/" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    className="flex items-center gap-2 text-sm font-medium transition-all hover:scale-110"
+                                    style={{ color: 'var(--color-text-secondary)' }}
+                                >
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                    </svg>
+                                    LinkedIn
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </Slide>
             </div>
         </div >

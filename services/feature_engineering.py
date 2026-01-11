@@ -5,17 +5,19 @@ from datetime import timedelta
 import numpy as np
 from collections import defaultdict
 
-def parse_submission_calendar(calendar_raw: str) -> Dict:
+def parse_submission_calendar(calendar_raw: str, year: int = 2025) -> Dict:
     """
     Converts LeetCode submissionCalendar string
-    into {date: count}
+    into {date: count} and filters by year
     """
     calendar_dict = json.loads(calendar_raw)
 
     parsed = {}
     for ts, count in calendar_dict.items():
         date = datetime.utcfromtimestamp(int(ts)).date()
-        parsed[date] = count
+        # Only include submissions from the specified year
+        if date.year == year:
+            parsed[date] = count
 
     return parsed
 

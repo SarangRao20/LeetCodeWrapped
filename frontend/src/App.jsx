@@ -5,6 +5,8 @@ import { Loader2, AlertCircle, Terminal } from 'lucide-react';
 import LandingPage from './components/LandingPage';
 import WrappedSlides from './components/WrappedSlides';
 import ParticleBackground from './components/ParticleBackground';
+import ThemeToggle from './components/ThemeToggle';
+import MusicPlayer from './components/MusicPlayer';
 
 function App() {
     const [view, setView] = useState('landing'); // 'landing', 'loading', 'wrapped', 'error'
@@ -30,7 +32,9 @@ function App() {
     };
 
     return (
-        <main className="bg-background text-white min-h-screen relative">
+        <main className="min-h-screen relative transition-colors duration-400" style={{ backgroundColor: 'var(--background)', color: 'var(--color-text-primary)' }}>
+            <ThemeToggle />
+            <MusicPlayer />
             <ParticleBackground />
             <AnimatePresence mode="wait">
                 {view === 'landing' && (
@@ -51,7 +55,8 @@ function App() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="h-screen flex flex-col items-center justify-center bg-[#030303]"
+                        className="h-screen flex flex-col items-center justify-center"
+                        style={{ backgroundColor: 'var(--background)' }}
                     >
                         <div className="relative">
                             <motion.div
@@ -66,7 +71,8 @@ function App() {
                         <motion.p
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="mt-8 text-white/40 font-bold tracking-[0.3em] uppercase text-xs"
+                            className="mt-8 font-bold tracking-[0.3em] uppercase text-xs"
+                            style={{ color: 'var(--color-text-muted)' }}
                         >
                             Compiling your year...
                         </motion.p>
@@ -83,13 +89,17 @@ function App() {
                         <div className="w-20 h-20 bg-red-500/10 rounded-full flex items-center justify-center mb-8 border border-red-500/20">
                             <AlertCircle className="text-red-500" size={40} />
                         </div>
-                        <h2 className="text-3xl font-black mb-4">Something went wrong</h2>
-                        <p className="text-white/40 max-w-md mx-auto mb-12">
+                        <h2 className="text-3xl font-black mb-4" style={{ color: 'var(--color-text-primary)' }}>Something went wrong</h2>
+                        <p className="max-w-md mx-auto mb-12" style={{ color: 'var(--color-text-muted)' }}>
                             {error}
                         </p>
                         <button
                             onClick={() => setView('landing')}
-                            className="px-8 py-3 rounded-full bg-white text-black font-bold hover:bg-accent-cyan transition-colors"
+                            className="px-8 py-3 rounded-full font-bold transition-all hover:scale-105"
+                            style={{ 
+                                backgroundColor: 'var(--accent-cyan)',
+                                color: 'white'
+                            }}
                         >
                             Try Again
                         </button>
